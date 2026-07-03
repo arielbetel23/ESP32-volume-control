@@ -9,6 +9,17 @@ def get_API_Key(file_path):
     with open(file_path, 'r') as file:
         return file.read().strip()
 
+def get_weather(api_key=get_API_Key(weather_API_file_path)):
+    url = "https://api.openweathermap.org/data/2.5/weather"
+    params = {
+        "q": "Even Yehuda,IL",
+        "appid": api_key,
+        "units": "metric"
+    }
+    response = requests.get(url, params=params)
+    data = response.json()
+    return data
+
 def find_esp_prot():
     key = "CP210x"
     ports = serial.tools.list_ports.comports()
