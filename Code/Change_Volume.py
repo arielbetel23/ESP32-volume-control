@@ -11,6 +11,14 @@ def get_volume_interface():
 
 volume = get_volume_interface()
 print(volume.GetMasterVolumeLevelScalar())
+volume.VolumeStepDown(None)
+print(volume.GetMasterVolumeLevelScalar())
+
+
+
+
+
+
 
 def list_ports():
     ports = serial.tools.list_ports.comports()
