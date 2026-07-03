@@ -24,12 +24,15 @@ def handle_command(line, volume):
 
 def read_serial():
     port = find_esp_prot()
-    ser = serial.Serial(port, 115200, timeout=1)
-    volume = get_volume_interface()
-    while True:
-        line = ser.readline()
-        handle_command(line.decode(), volume)
-        
+    if(port == None):
+        print("ESP32 not found/connected")
+    else:
+        ser = serial.Serial(port, 115200, timeout=1)
+        volume = get_volume_interface()
+        while True:
+            line = ser.readline()
+            handle_command(line.decode(), volume)
+
 read_serial()
 
 
