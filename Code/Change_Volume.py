@@ -21,38 +21,46 @@ def get_weather():
     data = response.json()
     return data
 
-def find_esp_prot():
-    key = "CP210x"
-    ports = serial.tools.list_ports.comports()
-    for port in ports:
-        if(key in port.description):
-            return port.name
+def extract_weather():
+    data = get_weather()
+    temperature = data["main"]["temp"]
+    description = data["weather"][0]["description"]
+    return temperature, description
 
-def get_volume_interface():
-    device = AudioUtilities.GetSpeakers()
-    return device.EndpointVolume
+print(extract_weather())
+
+# def find_esp_prot():
+#     key = "CP210x"
+#     ports = serial.tools.list_ports.comports()
+#     for port in ports:
+#         if(key in port.description):
+#             return port.name
+
+# def get_volume_interface():
+#     device = AudioUtilities.GetSpeakers()
+#     return device.EndpointVolume
     
-def handle_command(line, volume):
-    line = line.strip()
-    if (line == "VOL:+"):
-       volume.VolumeStepUp(None)
-    elif (line == "VOL:-"):
-       volume.VolumeStepDown(None)
-    elif (line == "VOL:MUTE"):
-       volume.SetMute(1, None)
+# def handle_command(line, volume):
+#     line = line.strip()
+#     if (line == "VOL:+"):
+#        volume.VolumeStepUp(None)
+#     elif (line == "VOL:-"):
+#        volume.VolumeStepDown(None)
+#     elif (line == "VOL:MUTE"):
+#        volume.SetMute(1, None)
 
-def read_serial():
-    port = find_esp_prot()
-    if(port == None):
-        print("ESP32 not found/connected")
-    else:
-        ser = serial.Serial(port, 115200, timeout=1)
-        volume = get_volume_interface()
-        while True:
-            line = ser.readline()
-            handle_command(line.decode(), volume)
+# def read_serial():
+#     port = find_esp_prot()
+#     if(port == None):
+#         print("ESP32 not found/connected")
+#     else:
+#         ser = serial.Serial(port, 115200, timeout=1)
+#         volume = get_volume_interface()
+#         while True:
+#             line = ser.readline()
+#             handle_command(line.decode(), volume)
 
-read_serial()
+# read_serial()
 
 
 
