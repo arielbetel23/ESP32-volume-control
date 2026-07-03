@@ -1,5 +1,16 @@
 import serial
 import serial.tools.list_ports
+from pycaw.pycaw import AudioUtilities
+
+
+def get_volume_interface():
+    devices = AudioUtilities.GetSpeakers()
+    device = AudioUtilities.GetSpeakers()
+    return device.EndpointVolume
+    
+
+volume = get_volume_interface()
+print(volume.GetMasterVolumeLevelScalar())
 
 def list_ports():
     ports = serial.tools.list_ports.comports()
@@ -12,4 +23,8 @@ def read_serial():
     while True:
         line = ser.readline()
         print(line.decode())
+
+
+
+
 
