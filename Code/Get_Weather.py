@@ -23,3 +23,8 @@ def extract_weather():
     temperature = round(data["main"]["temp"])
     description = data["weather"][0]["description"]
     return temperature, description
+
+
+
+
+
