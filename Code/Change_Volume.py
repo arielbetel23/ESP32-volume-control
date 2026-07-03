@@ -2,12 +2,6 @@ import serial
 import serial.tools.list_ports
 from pycaw.pycaw import AudioUtilities
 
-def list_ports():
-    ports = serial.tools.list_ports.comports()
-    for port in ports:
-        print(port.device)
-        print(port.description)
-
 def find_esp_prot():
     key = "CP210x"
     ports = serial.tools.list_ports.comports()
