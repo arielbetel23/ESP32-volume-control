@@ -9,7 +9,8 @@ def get_API_Key(file_path):
     with open(file_path, 'r') as file:
         return file.read().strip()
 
-def get_weather(api_key=get_API_Key(weather_API_file_path)):
+def get_weather():
+    api_key = get_API_Key(weather_API_file_path)
     url = "https://api.openweathermap.org/data/2.5/weather"
     params = {
         "q": "Even Yehuda,IL",
