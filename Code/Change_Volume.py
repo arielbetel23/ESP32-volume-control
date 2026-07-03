@@ -1,6 +1,13 @@
 import serial
 import serial.tools.list_ports
 from pycaw.pycaw import AudioUtilities
+import requests
+
+weather_API_file_path = r"C:\Users\ariel\OneDrive\שולחן העבודה - Copy\שולחן העבודה\Electronics Projects\Weather_API_Key.txt"
+
+def get_API_Key(file_path):
+    with open(file_path, 'r') as file:
+        return file.read().strip()
 
 def find_esp_prot():
     key = "CP210x"
