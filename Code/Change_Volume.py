@@ -8,12 +8,20 @@ def list_ports():
         print(port.device)
         print(port.description)
 
+def find_esp_prot():
+    key = "CP210x"
+    ports = serial.tools.list_ports.comports()
+    for port in ports:
+        if(key in port.description):
+            return port.name
+
 def get_volume_interface():
     device = AudioUtilities.GetSpeakers()
     return device.EndpointVolume
     
 def read_serial():
-    ser = serial.Serial("COM3", 115200, timeout=1)
+    port = find_esp_prot()
+    ser = serial.Serial(port, 115200, timeout=1)
     volume = get_volume_interface()
     while True:
         line = ser.readline()
@@ -30,7 +38,6 @@ def handle_command(line, volume):
 
 
 read_serial()
-
 
 
 
