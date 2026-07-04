@@ -33,14 +33,12 @@ def run_session(volume):
     writer(ser)
 
 def main():
-    port = find_esp_port()
-    if port is None:
-        print("ESP32 not found/connected")
-        return
-    ser = serial.Serial(port, 115200, timeout=1)
     volume = get_volume_interface()
-    threading.Thread(target=reader, args=(ser, volume), daemon=True).start()
-    writer(ser)
+    while True:
+        try:
+            run_session(volume)
+        except serial.SerialException:
+            time.sleep(2)
 
 if __name__ == "__main__":
     main()
