@@ -22,19 +22,7 @@ def handle_command(line, volume):
     elif (line == "VOL:MUTE"):
         volume.SetMute(0 if volume.GetMute() else 1, None)
 
-def read_serial():
-    port = find_esp_port()
-    if(port == None):
-        print("ESP32 not found/connected")
-    else:
-        ser = serial.Serial(port, 115200, timeout=1)
-        volume = get_volume_interface()
-        while True:
-            line = ser.readline()
-            handle_command(line.decode(), volume)
 
-if __name__ == "__main__":
-    read_serial()
 
 
 
