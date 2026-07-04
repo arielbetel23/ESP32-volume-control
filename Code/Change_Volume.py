@@ -20,7 +20,7 @@ def handle_command(line, volume):
     elif (line == "VOL:-"):
        volume.VolumeStepDown(None)
     elif (line == "VOL:MUTE"):
-       volume.SetMute(1, None)
+        volume.SetMute(0 if volume.GetMute() else 1, None)
 
 def read_serial():
     port = find_esp_port()
