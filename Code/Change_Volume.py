@@ -1,9 +1,8 @@
 import serial
 import serial.tools.list_ports
 from pycaw.pycaw import AudioUtilities
-from Get_Weather import extract_weather
 
-def find_esp_prot():
+def find_esp_port():
     key = "CP210x"
     ports = serial.tools.list_ports.comports()
     for port in ports:
@@ -24,7 +23,7 @@ def handle_command(line, volume):
        volume.SetMute(1, None)
 
 def read_serial():
-    port = find_esp_prot()
+    port = find_esp_port()
     if(port == None):
         print("ESP32 not found/connected")
     else:

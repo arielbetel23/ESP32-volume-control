@@ -27,4 +27,3 @@ def extract_weather():
 
 
 
-
