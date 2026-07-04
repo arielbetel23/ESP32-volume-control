@@ -33,7 +33,8 @@ def read_serial():
             line = ser.readline()
             handle_command(line.decode(), volume)
 
-read_serial()
+if __name__ == "__main__":
+    read_serial()
 
 
 
