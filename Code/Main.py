@@ -11,7 +11,6 @@ def reader(ser, volume):
         if line:
             handle_command(line, volume)
 
-
 def writer(ser):
     last_weather = 0
     while True:
@@ -20,6 +19,16 @@ def writer(ser):
             send_weather(ser)
             last_weather = time.time()
         time.sleep(1)
+
+def main():
+    port = find_esp_port()
+    if port is None:
+        print("ESP32 not found/connected")
+        return
+    ser = serial.Serial(port, 115200, timeout=1)
+    volume = get_volume_interface()
+    threading.Thread(target=reader, args=(ser, volume), daemon=True).start()
+    writer(ser)
 
 
 
