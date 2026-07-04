@@ -21,7 +21,14 @@ if(port == None):
     print("ESP32 not found/connected")
 else:
     ser = serial.Serial(port,115200, timeout=1)
-    
+    last_weather = time.time()
+    send_weather(ser)
+    while True:
+        send_time_and_date(ser)
+        if(time.time() - last_weather >= 60):
+            send_weather(ser)
+            last_weather = time.time()
+        time.sleep(1)
 
 
 
