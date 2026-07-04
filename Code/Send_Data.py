@@ -16,19 +16,20 @@ def send_weather(ser):
     ser.write(f"DESC:{desc}\n".encode())
 
 
-port = find_esp_port()
-if(port == None):
-    print("ESP32 not found/connected")
-else:
-    ser = serial.Serial(port,115200, timeout=1)
-    last_weather = time.time()
-    send_weather(ser)
-    while True:
-        send_time_and_date(ser)
-        if(time.time() - last_weather >= 60):
-            send_weather(ser)
-            last_weather = time.time()
-        time.sleep(1)
+if __name__ == "__main__":
+    port = find_esp_port()
+    if port is None:
+        print("ESP32 not found/connected")
+    else:
+        ser = serial.Serial(port, 115200, timeout=1)
+        last_weather = time.time()
+        send_weather(ser)
+        while True:
+            send_time_and_date(ser)
+            if time.time() - last_weather >= 60:
+                send_weather(ser)
+                last_weather = time.time()
+            time.sleep(1)
 
 
 
