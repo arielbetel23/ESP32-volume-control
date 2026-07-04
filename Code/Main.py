@@ -4,6 +4,12 @@ import serial
 from Change_Volume import find_esp_port, get_volume_interface, handle_command
 from Send_Data import send_time_and_date, send_weather
 
+def wait_for_port():
+    while True:
+        port = find_esp_port()
+        if port is not None:
+            return port
+        time.sleep(2)
 
 def reader(ser, volume):
     while True:
