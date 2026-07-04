@@ -30,7 +30,8 @@ def main():
     threading.Thread(target=reader, args=(ser, volume), daemon=True).start()
     writer(ser)
 
-
+if __name__ == "__main__":
+    main()
 
 
 
