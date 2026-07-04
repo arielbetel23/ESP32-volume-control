@@ -26,6 +26,12 @@ def writer(ser):
             last_weather = time.time()
         time.sleep(1)
 
+def run_session(volume):
+    port = wait_for_port()
+    ser = serial.Serial(port, 115200, timeout=1)
+    threading.Thread(target=reader, args=(ser, volume), daemon=True).start()
+    writer(ser)
+
 def main():
     port = find_esp_port()
     if port is None:
