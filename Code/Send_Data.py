@@ -16,8 +16,12 @@ def send_weather(ser):
     ser.write(f"DESC:{desc}\n".encode())
 
 
-
-
+port = find_esp_port()
+if(port == None):
+    print("ESP32 not found/connected")
+else:
+    ser = serial.Serial(port,115200, timeout=1)
+    
 
 
 
