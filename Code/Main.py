@@ -12,7 +12,14 @@ def reader(ser, volume):
             handle_command(line, volume)
 
 
-
+def writer(ser):
+    last_weather = 0
+    while True:
+        send_time_and_date(ser)
+        if time.time() - last_weather >= 60:
+            send_weather(ser)
+            last_weather = time.time()
+        time.sleep(1)
 
 
 
