@@ -16,6 +16,9 @@ void setup(){
     pinMode(encoder_switch_pin, INPUT);
     pinMode(LED_pin, OUTPUT);
     pinMode(buzzer_pin, OUTPUT);
+
+    Serial.begin(115200);
+    
 }
 
 void loop(){
