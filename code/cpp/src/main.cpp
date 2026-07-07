@@ -8,6 +8,18 @@ const byte encoder_switch_pin = 25;
 const byte LED_pin = 14;
 const byte buzzer_pin = 26;
 
+const int LED_FEEDBACK_DURATION = 40;
+const int BEEP_FREQUENCY = 2000;
+const int BEEP_DURATION = 30;
+
+void start_feedback(){
+
+}
+
+void update_feedback(){
+
+}
+
 void setup(){
     pinMode(previous_page_button_pin, INPUT);
     pinMode(next_page_button_pin, INPUT);
@@ -24,6 +36,9 @@ bool last_state_next_button = HIGH;
 bool last_state_previous_button = HIGH;
 bool last_state_encoder_switch = HIGH;
 bool last_state_encoder_CLK = HIGH;
+
+unsigned long led_start_time = 0;
+bool led_is_on = false;
 
 void loop(){
     bool current_state_encoder_CLK = digitalRead(encoder_CLK_A_pin);
