@@ -13,11 +13,14 @@ const int BEEP_FREQUENCY = 2000;
 const int BEEP_DURATION = 30;
 
 void start_feedback(){
-
+    digitalWrite(LED_pin, HIGH);
+    led_start_time = millis();
+    led_is_on = true;
+    tone(buzzer_pin, BEEP_FREQUENCY, BEEP_DURATION);
 }
 
 void update_feedback(){
-
+    
 }
 
 void setup(){
