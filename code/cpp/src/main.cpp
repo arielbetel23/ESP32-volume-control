@@ -18,9 +18,22 @@ void setup(){
     pinMode(buzzer_pin, OUTPUT);
 
     Serial.begin(115200);
-    
 }
 
+bool last_state_next_button = HIGH;
+bool last_state_previous_button = HIGH;
+
 void loop(){
-    
+    bool current_state_next_button = digitalRead(next_page_button_pin);
+    bool current_state_previous_button = digitalRead(previous_page_button_pin);
+
+    if(last_state_previous_button == HIGH && current_state_previous_button == LOW){
+        // the action
+    }
+    last_state_previous_button = current_state_previous_button;
+    if (last_state_next_button == HIGH && current_state_next_button == LOW) {
+        // the action
+    }
+
+    last_state_next_button = current_state_next_button;
 }
