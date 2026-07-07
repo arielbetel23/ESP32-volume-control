@@ -22,21 +22,35 @@ void setup(){
 
 bool last_state_next_button = HIGH;
 bool last_state_previous_button = HIGH;
-bool last_state_encoder_switch = HIGH;;
+bool last_state_encoder_switch = HIGH;
+bool last_state_encoder_CLK = HIGH;
 
 void loop(){
+    bool current_state_encoder_CLK = digitalRead(encoder_CLK_A_pin);
     bool current_state_next_button = digitalRead(next_page_button_pin);
     bool current_state_previous_button = digitalRead(previous_page_button_pin);
     bool current_state_encoder_switch = digitalRead(encoder_switch_pin);
+
+    if(last_state_encoder_CLK == HIGH && current_state_encoder_CLK == LOW){
+        if(digitalRead(encoder_DT_B_pin) == HIGH){
+            Serial.println("VOL:+");
+        }
+        else{
+            Serial.println("VOL:-");
+        }
+    }
+    last_state_encoder_CLK = current_state_encoder_CLK;
 
     if(last_state_encoder_switch == HIGH && current_state_encoder_switch == LOW){
         Serial.println("VOL:MUTE");
     }
     last_state_encoder_switch = current_state_encoder_switch;
+
     if(last_state_previous_button == HIGH && current_state_previous_button == LOW){
         // the action
     }
     last_state_previous_button = current_state_previous_button;
+    
     if (last_state_next_button == HIGH && current_state_next_button == LOW) {
         // the action
     }
