@@ -20,7 +20,10 @@ void start_feedback(){
 }
 
 void update_feedback(){
-    
+    if (led_is_on && millis() - led_start_time >= LED_FEEDBACK_DURATION) {
+        digitalWrite(LED_pin, LOW);
+        led_is_on = false;
+    }
 }
 
 void setup(){
