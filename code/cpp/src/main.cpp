@@ -12,6 +12,9 @@ const int LED_FEEDBACK_DURATION = 40;
 const int BEEP_FREQUENCY = 2000;
 const int BEEP_DURATION = 30;
 
+unsigned long led_start_time = 0;
+bool led_is_on = false;
+
 void start_feedback(){
     digitalWrite(LED_pin, HIGH);
     led_start_time = millis();
@@ -43,9 +46,6 @@ bool last_state_previous_button = HIGH;
 bool last_state_encoder_switch = HIGH;
 bool last_state_encoder_CLK = HIGH;
 
-unsigned long led_start_time = 0;
-bool led_is_on = false;
-
 void loop(){
     update_feedback();
 
@@ -72,13 +72,13 @@ void loop(){
 
     if(last_state_previous_button == HIGH && current_state_previous_button == LOW){
         start_feedback();
-        // the action - moving next page
+        // the action - moving previous page
     }
     last_state_previous_button = current_state_previous_button;
     
     if (last_state_next_button == HIGH && current_state_next_button == LOW) {
         start_feedback();
-        // the action - moving previous page
+        // the action - moving next page
     }
 
     last_state_next_button = current_state_next_button;
