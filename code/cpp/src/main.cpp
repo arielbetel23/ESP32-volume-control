@@ -47,6 +47,8 @@ unsigned long led_start_time = 0;
 bool led_is_on = false;
 
 void loop(){
+    update_feedback();
+
     bool current_state_encoder_CLK = digitalRead(encoder_CLK_A_pin);
     bool current_state_next_button = digitalRead(next_page_button_pin);
     bool current_state_previous_button = digitalRead(previous_page_button_pin);
@@ -64,16 +66,19 @@ void loop(){
 
     if(last_state_encoder_switch == HIGH && current_state_encoder_switch == LOW){
         Serial.println("VOL:MUTE");
+        start_feedback();
     }
     last_state_encoder_switch = current_state_encoder_switch;
 
     if(last_state_previous_button == HIGH && current_state_previous_button == LOW){
-        // the action
+        start_feedback();
+        // the action - moving next page
     }
     last_state_previous_button = current_state_previous_button;
     
     if (last_state_next_button == HIGH && current_state_next_button == LOW) {
-        // the action
+        start_feedback();
+        // the action - moving previous page
     }
 
     last_state_next_button = current_state_next_button;
