@@ -5,6 +5,8 @@ const byte next_page_button_pin = 19;
 const byte encoder_CLK_A_pin = 32; 
 const byte encoder_DT_B_pin = 33;
 const byte encoder_switch_pin = 25;
+const byte LED_pin = 14;
+const byte buzzer_pin = 26;
 
 void setup(){
     pinMode(previous_page_button_pin, INPUT);
@@ -12,6 +14,8 @@ void setup(){
     pinMode(encoder_CLK_A_pin, INPUT);
     pinMode(encoder_DT_B_pin, INPUT);
     pinMode(encoder_switch_pin, INPUT);
+    pinMode(LED_pin, OUTPUT);
+    pinMode(buzzer_pin, OUTPUT);
 }
 
 void loop(){
