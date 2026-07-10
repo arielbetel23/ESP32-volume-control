@@ -26,10 +26,10 @@ String serial_buffer = "";
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
-String current_date = "Sun, 27th Jul";
-String current_time = "14:57";
-String current_temp = "27";
-String current_desc = "sunny day";
+String current_date = "----/--/--";
+String current_time = "--:--";
+String current_temp = "--";
+String current_desc = "waiting...";
 
 unsigned long led_start_time = 0;
 bool led_is_on = false;
@@ -137,6 +137,7 @@ bool last_state_encoder_CLK = HIGH;
 
 void loop(){
     update_feedback();
+    read_serial();
 
     bool current_state_encoder_CLK = digitalRead(encoder_CLK_A_pin);
     bool current_state_next_button = digitalRead(next_page_button_pin);
