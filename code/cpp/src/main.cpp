@@ -36,10 +36,20 @@ bool led_is_on = false;
 
 unsigned long last_draw_time = 0;
 
+void handle_line(String line){
+
+}
+
 void read_serial(){
     while(Serial.available()){
         char incoming_char = Serial.read();
-        serial_buffer += incoming_char;
+        if(incoming_char == '\n'){
+            handle_line(serial_buffer);
+            serial_buffer = "";
+        }
+        else if(incoming_char != '\r'){
+            serial_buffer += incoming_char;
+        }
     }
 }
 
