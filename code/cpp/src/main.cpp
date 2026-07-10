@@ -43,6 +43,19 @@ void handle_line(String line){
     }
     String prefix = line.substring(0, separator_index);
     String value = line.substring(separator_index + 1);
+
+    if(prefix == "DATE"){
+        current_date = value;
+    }
+    else if(prefix == "TIME"){
+        current_time = value;
+    }
+    else if(prefix == "TEMP"){
+        current_temp = value;
+    }
+    else if(prefix == "DESC"){
+        current_desc = value;
+    }
 }
 
 void read_serial(){
