@@ -8,8 +8,13 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "C:/Users/ariel/OneDrive/שולחן העבודה - Copy/שולחן העבודה/Electronics Projects/ESP32 volume control/code/cpp/include",
-                "C:/Users/ariel/OneDrive/שולחן העבודה - Copy/שולחן העבודה/Electronics Projects/ESP32 volume control/code/cpp/src",
+                "C:/Users/ariel/Desktop/Electronics Projects/ESP32 volume control/code/cpp/include",
+                "C:/Users/ariel/Desktop/Electronics Projects/ESP32 volume control/code/cpp/src",
+                "C:/Users/ariel/Desktop/Electronics Projects/ESP32 volume control/code/cpp/.pio/libdeps/esp32dev/Adafruit SSD1306",
+                "C:/Users/ariel/Desktop/Electronics Projects/ESP32 volume control/code/cpp/.pio/libdeps/esp32dev/Adafruit GFX Library",
+                "C:/Users/ariel/Desktop/Electronics Projects/ESP32 volume control/code/cpp/.pio/libdeps/esp32dev/Adafruit BusIO",
+                "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src",
+                "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                 "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include",
                 "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include",
                 "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/esp_additions/freertos",
@@ -228,7 +233,6 @@
                 "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/RainMaker/src",
                 "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/SD/src",
                 "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/SD_MMC/src",
-                "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src",
                 "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/SPIFFS/src",
                 "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/SimpleBLE/src",
                 "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/Ticker/src",
@@ -238,14 +242,18 @@
                 "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
                 "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src",
                 "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src",
-                "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                 ""
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "C:/Users/ariel/OneDrive/שולחן העבודה - Copy/שולחן העבודה/Electronics Projects/ESP32 volume control/code/cpp/include",
-                    "C:/Users/ariel/OneDrive/שולחן העבודה - Copy/שולחן העבודה/Electronics Projects/ESP32 volume control/code/cpp/src",
+                    "C:/Users/ariel/Desktop/Electronics Projects/ESP32 volume control/code/cpp/include",
+                    "C:/Users/ariel/Desktop/Electronics Projects/ESP32 volume control/code/cpp/src",
+                    "C:/Users/ariel/Desktop/Electronics Projects/ESP32 volume control/code/cpp/.pio/libdeps/esp32dev/Adafruit SSD1306",
+                    "C:/Users/ariel/Desktop/Electronics Projects/ESP32 volume control/code/cpp/.pio/libdeps/esp32dev/Adafruit GFX Library",
+                    "C:/Users/ariel/Desktop/Electronics Projects/ESP32 volume control/code/cpp/.pio/libdeps/esp32dev/Adafruit BusIO",
+                    "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src",
+                    "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                     "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include",
                     "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include",
                     "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/esp_additions/freertos",
@@ -464,7 +472,6 @@
                     "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/RainMaker/src",
                     "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/SD/src",
                     "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/SD_MMC/src",
-                    "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src",
                     "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/SPIFFS/src",
                     "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/SimpleBLE/src",
                     "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/Ticker/src",
@@ -474,7 +481,6 @@
                     "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
                     "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src",
                     "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src",
-                    "C:/Users/ariel/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                     ""
                 ]
             },
