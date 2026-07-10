@@ -1,6 +1,6 @@
 import requests
 
-weather_API_file_path = r"C:\Users\ariel\OneDrive\שולחן העבודה - Copy\שולחן העבודה\Electronics Projects\Weather_API_Key.txt"
+weather_API_file_path = r"C:\Users\ariel\Desktop\Electronics Projects\Weather_API_Key.txt"
 
 def get_API_Key(file_path):
     with open(file_path, 'r') as file:
