@@ -22,6 +22,8 @@ const byte OLED_SDA_pin = 21;
 const byte OLED_SCL_pin = 22;
 const int DISPLAY_REFRESH_INTERVAL = 200;
 
+String serial_buffer = "";
+
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
 String current_date = "Sun, 27th Jul";
@@ -33,6 +35,13 @@ unsigned long led_start_time = 0;
 bool led_is_on = false;
 
 unsigned long last_draw_time = 0;
+
+void read_serial(){
+    while(Serial.available()){
+        char incoming_char = Serial.read();
+        serial_buffer += incoming_char;
+    }
+}
 
 void start_feedback(){
     digitalWrite(LED_pin, HIGH);
