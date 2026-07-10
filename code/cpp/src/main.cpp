@@ -37,7 +37,12 @@ bool led_is_on = false;
 unsigned long last_draw_time = 0;
 
 void handle_line(String line){
-
+    int separator_index = line.indexOf(':');
+    if(separator_index == -1){
+        return;
+    }
+    String prefix = line.substring(0, separator_index);
+    String value = line.substring(separator_index + 1);
 }
 
 void read_serial(){
