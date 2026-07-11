@@ -1,8 +1,10 @@
 import time
 import threading
 import serial
+
 from Change_Volume import find_esp_port, get_volume_interface, handle_command
 from Send_Data import send_time_and_date, send_weather
+
 
 def wait_for_port():
     while True:
@@ -11,11 +13,13 @@ def wait_for_port():
             return port
         time.sleep(2)
 
+
 def reader(ser, volume):
     while True:
         line = ser.readline().decode(errors="ignore")
         if line:
             handle_command(line, volume)
+
 
 def writer(ser):
     last_weather = 0
@@ -26,11 +30,13 @@ def writer(ser):
             last_weather = time.time()
         time.sleep(1)
 
+
 def run_session(volume):
     port = wait_for_port()
     ser = serial.Serial(port, 115200, timeout=1)
     threading.Thread(target=reader, args=(ser, volume), daemon=True).start()
     writer(ser)
+
 
 def main():
     volume = get_volume_interface()
@@ -40,27 +46,6 @@ def main():
         except serial.SerialException:
             time.sleep(2)
 
+
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
