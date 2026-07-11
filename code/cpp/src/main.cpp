@@ -24,8 +24,10 @@ const int DISPLAY_REFRESH_INTERVAL = 200;
 
 enum Page { PAGE_HOME, PAGE_TIMER, PAGE_STOPWATCH, PAGE_COUNT };
 enum TimerState { TIMER_IDLE, TIMER_RUNNING, TIMER_PAUSED };
+enum StopwatchState { STOPWATCH_IDLE, STOPWATCH_RUNNING, STOPWATCH_PAUSED };
 
 const int MAX_TIMER_SECONDS = 5999;
+const int MAX_STOPWATCH_SECONDS = 5999;
 const unsigned long LONG_PRESS_DURATION = 800;
 const unsigned long FINISH_ALERT_DURATION = 1200;
 const int FINISH_BEEP_FREQUENCY = 2500;
@@ -48,6 +50,10 @@ int current_page = PAGE_HOME;
 TimerState timer_state = TIMER_IDLE;
 int remaining_seconds = 0;
 unsigned long last_countdown_tick = 0;
+
+StopwatchState stopwatch_state = STOPWATCH_IDLE;
+int elapsed_seconds = 0;
+unsigned long last_stopwatch_tick = 0;
 
 bool switch_was_down = false;
 bool long_fired = false;
@@ -180,6 +186,21 @@ void cancel_timer(){
     remaining_seconds = 0;
 }
 
+void toggle_stopwatch(){
+    if(stopwatch_state == STOPWATCH_RUNNING){
+        stopwatch_state = STOPWATCH_PAUSED;
+    }
+    else{
+        stopwatch_state = STOPWATCH_RUNNING;
+        last_stopwatch_tick = millis();
+    }
+}
+
+void cancel_stopwatch(){
+    stopwatch_state = STOPWATCH_IDLE;
+    elapsed_seconds = 0;
+}
+
 void start_finish_alert(){
     finish_alert_active = true;
     finish_alert_start = millis();
@@ -205,12 +226,19 @@ void handle_short_press(){
     else if(current_page == PAGE_TIMER){
         toggle_timer();
     }
+    else if(current_page == PAGE_STOPWATCH){
+        toggle_stopwatch();
+    }
     start_feedback();
 }
 
 void handle_long_press(){
     if(current_page == PAGE_TIMER){
         cancel_timer();
+        start_feedback();
+    }
+    else if(current_page == PAGE_STOPWATCH){
+        cancel_stopwatch();
         start_feedback();
     }
 }
@@ -251,6 +279,20 @@ void update_timer(){
     }
 }
 
+void update_stopwatch(){
+    if(stopwatch_state != STOPWATCH_RUNNING){
+        return;
+    }
+    if(millis() - last_stopwatch_tick >= 1000){
+        last_stopwatch_tick += 1000;
+        elapsed_seconds++;
+        if(elapsed_seconds >= MAX_STOPWATCH_SECONDS){
+            elapsed_seconds = MAX_STOPWATCH_SECONDS;
+            stopwatch_state = STOPWATCH_PAUSED;
+        }
+    }
+}
+
 void draw_timer_page(){
     int minutes = remaining_seconds / 60;
     int seconds = remaining_seconds % 60;
@@ -270,10 +312,20 @@ void draw_timer_page(){
 }
 
 void draw_stopwatch_page(){
+    int minutes = elapsed_seconds / 60;
+    int seconds = elapsed_seconds % 60;
+    char buffer[6];
+    sprintf(buffer, "%02d:%02d", minutes, seconds);
+
     display.clearDisplay();
-    display.setTextSize(2);
-    display.setCursor(0, 0);
-    display.print("Stopwatch");
+    display.setTextSize(3);
+
+    int16_t bounds_x, bounds_y;
+    uint16_t bounds_w, bounds_h;
+    display.getTextBounds(buffer, 0, 0, &bounds_x, &bounds_y, &bounds_w, &bounds_h);
+    display.setCursor((SCREEN_WIDTH - bounds_w) / 2, (SCREEN_HEIGHT - bounds_h) / 2);
+    display.print(buffer);
+
     display.display();
 }
 
@@ -313,6 +365,7 @@ void loop(){
     read_serial();
     read_encoder_switch();
     update_timer();
+    update_stopwatch();
 
     bool current_state_encoder_CLK = digitalRead(encoder_CLK_A_pin);
     bool current_state_next_button = digitalRead(next_page_button_pin);
